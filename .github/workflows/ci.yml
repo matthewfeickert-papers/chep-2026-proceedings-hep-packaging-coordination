@@ -21,10 +21,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Compile LaTeX document
-      uses: xu-cheng/texlive-action@v2
+      uses: xu-cheng/texlive-action@v3
       with:
         scheme: full
         run: |
@@ -36,14 +36,14 @@ jobs:
         ls -lhtra
 
     - name: Upload pdf
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: proceedings
         path: 'chep_2026_proceedings.pdf'
 
     - name: Build arXiv archive
       if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-      uses: xu-cheng/texlive-action/full@v1
+      uses: xu-cheng/texlive-action@v3
       with:
         run: |
           apk add make sed
@@ -56,7 +56,7 @@ jobs:
 
     - name: Upload arXiv archive
       if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: submit_to_arXiv
         path: 'submit_to_arXiv'
@@ -75,7 +75,7 @@ jobs:
 
     steps:
     - name: Setup Pages
-      uses: actions/configure-pages@v5
+      uses: actions/configure-pages@v6
 
     - name: Create site directory structure
       run: |
@@ -83,7 +83,7 @@ jobs:
         touch _site/index.html
         touch _site/.nojekyll
 
-    - uses: actions/download-artifact@v4
+    - uses: actions/download-artifact@v8
       with:
         name: proceedings
         path: '_site/'
@@ -99,8 +99,8 @@ jobs:
         done
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-pages-artifact@v5
 
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v4
+      uses: actions/deploy-pages@v5
