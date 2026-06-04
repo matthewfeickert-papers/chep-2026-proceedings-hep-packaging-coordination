@@ -1,4 +1,4 @@
-FILENAME = chep_2024_proceedings
+FILENAME = chep_2026_proceedings
 
 date = $(shell date +%Y-%m-%d)
 output_file = draft_$(date).pdf

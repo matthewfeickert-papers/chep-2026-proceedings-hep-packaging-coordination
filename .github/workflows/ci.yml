@@ -39,7 +39,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: proceedings
-        path: 'chep_2024_proceedings.pdf'
+        path: 'chep_2026_proceedings.pdf'
 
     - name: Build arXiv archive
       if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
