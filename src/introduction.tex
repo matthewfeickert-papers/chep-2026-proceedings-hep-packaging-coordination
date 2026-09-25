@@ -30,3 +30,7 @@ Examples of these terms that emphasize the heterogeneous nature of the ecosystem
 
 These different packaging technology choices all generate package artifacts that can the be distributed in different manners.
 Many packaging technologies provide community recognized package indexes and tools that facilitate distribution to end-users, though curation and distribution of software environments through Linux container images (e.g. Apptainer, Docker) or the read-only file system CernVM-FS\footnote{CernVM-FS is perhaps the most widely used and well known software distribution mechanism in the HEP ecosystem.}~\cite{Blomer:2011zz}.
+
+An end-user can reasonably want to be enabled by software packaging and distribution technologies to easily create bespoke software environments that include HEP software with minimal effort and time using one toolchain across all computing systems.
+This system should be multi-platform so that an end-user should not be concerned about if the software they needs exists readily on multiple target platforms (e.g. x86\_64-based Linux, AArch64-based Linux, ARM-based macOS) and additionally should be reproducible by default at the digest level so that the user does not need to be responsible for the methods of recreating an exact software environment.
+We argue that a conda-based approach provides these capabilities without significant overhead or complexity for the end-user or software project maintainers.
