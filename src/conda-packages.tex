@@ -5,3 +5,5 @@ A conda package is fundamentally a \texttt{zip} compressed archive (\texttt{.con
 One archive contains relocatable files, platform-specific binaries, and, potentially,symlinks (for Unix-based platforms).
 The other archive contains metadata that comprehensively describes the package contents, provenance, requirements, and dependencies.
 As the conda package format is language agnostic it can be used to effectively package any software as a conda package.
+This has allowed for wide support of libraries and tools from Fortran (e.g. \href{https://github.com/conda-forge/lapack-feedstock}{LAPACK}), C++ (e.g. \href{https://github.com/conda-forge/boost-feedstock}{BOOST}), CUDA (e.g. \href{https://github.com/conda-forge/cudnn-feedstock}{cuDNN}), Python (e.g. \href{https://github.com/conda-forge/scipy-feedstock}{SciPy}), and other languages used across science.
+It also allows for software projects that expose interfaces in multiple languages to be packaged in their entirety as a single conda package (e.g. \href{https://github.com/conda-forge/root-feedstock}{ROOT}).
