@@ -1,3 +1,11 @@
 \section{Introduction}\label{sec:introduction}
 
-Packaging of software in the high energy physics (HEP) ecosystem has historically been a complex and highly heterogeneous process given the needs and expectations of end-users and varying technologies that have existed over time~\cite{Buckley:2006nm}.
+Packaging of software and distribution of software in the high energy physics (HEP) ecosystem has historically been a complex and highly heterogeneous process given the needs and expectations of end-users and varying technologies that have existed over time~\cite{Buckley:2006nm}.
+While the HEP ecosystem has achieved great success with this heterogeneous approach it can lead to challenges in acquiring software outside of prescribed distribution methods, sharing of software tools across the broader open source ecosystem, and creates barriers for end-users in acquiring software in a useful and portable manner.
+Through efforts of the HEP Packaging Coordination community project~\cite{matthew_feickert_chep_2026} --- that build upon previous HEP community efforts --- a robust and flexible system for packaging and distributing HEP software as conda packages~\cite{conda_software} through the conda-forge package index~\cite{conda_forge} has been established.
+Use of this packaging technology and software distribution are being further explored to improve the accessibility, portability, and reproducibility of the HEP software ecosystem.
+
+For clarity, ``\emph{packaging}'' is defined as the process of defining, collating, and potentially building software projects into distributable units that an end-user can practically request, install, and use.
+``\emph{Software distribution}'' is defined as the means by which packaged software is made available to end-users.
+A ``\emph{software environments}'' is defined as the collection of (potentially packaged and unpackaged) software that are installed and/or made available to a user through directory trees and shell environment variables being manipulated to exist on the user's system shell paths.
+Software environments are assumed to be different from the default state of a user's system, but are not required to be (e.g. in the case of a custom operating system distribution).
