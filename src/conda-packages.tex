@@ -1,1 +1,7 @@
 \section{Conda packages}\label{sec:conda-packages}
+
+The conda packaging format~\cite{conda_software} is general yet powerful.
+A conda package is fundamentally a \texttt{zip} compressed archive (\texttt{.conda}) containing two Zstandard compressed \texttt{tar} archives (\texttt{.tar.zst}).
+One archive contains relocatable files, platform-specific binaries, and, potentially,symlinks (for Unix-based platforms).
+The other archive contains metadata that comprehensively describes the package contents, provenance, requirements, and dependencies.
+As the conda package format is language agnostic it can be used to effectively package any software as a conda package.
