@@ -2,10 +2,28 @@
 
 Packaging of software and distribution of software in the high energy physics (HEP) ecosystem has historically been a complex and highly heterogeneous process given the needs and expectations of end-users and varying technologies that have existed over time~\cite{Buckley:2006nm}.
 While the HEP ecosystem has achieved great success with this heterogeneous approach it can lead to challenges in acquiring software outside of prescribed distribution methods, sharing of software tools across the broader open source ecosystem, and creates barriers for end-users in acquiring software in a useful and portable manner.
-Through efforts of the HEP Packaging Coordination community project~\cite{matthew_feickert_chep_2026} --- that build upon previous HEP community efforts --- a robust and flexible system for packaging and distributing HEP software as conda packages~\cite{conda_software} through the conda-forge package index~\cite{conda_forge} has been established.
+Through efforts of the HEP Packaging Coordination community project~\cite{matthew_feickert_chep_2026} --- that build upon previous HEP community efforts~\cite{Burr:2699537} --- a robust and flexible system for packaging and distributing HEP software as conda packages~\cite{conda_software} through the conda-forge package index~\cite{conda_forge} has been established.
 Use of this packaging technology and software distribution are being further explored to improve the accessibility, portability, and reproducibility of the HEP software ecosystem.
 
-For clarity, ``\emph{packaging}'' is defined as the process of defining, collating, and potentially building software projects into distributable units that an end-user can practically request, install, and use.
+For clarity in this writing, ``\emph{packaging}'' is defined as the process of defining, collating, and potentially building software projects into distributable units that an end-user can practically request, install, and use.
 ``\emph{Software distribution}'' is defined as the means by which packaged software is made available to end-users.
 A ``\emph{software environments}'' is defined as the collection of (potentially packaged and unpackaged) software that are installed and/or made available to a user through directory trees and shell environment variables being manipulated to exist on the user's system shell paths.
 Software environments are assumed to be different from the default state of a user's system, but are not required to be (e.g. in the case of a custom operating system distribution).
+
+Examples of these terms that emphasize the heterogeneous nature of the ecosystem are the following packaging approaches.
+
+\begin{itemize}
+    \item \textbf{Source distributions} provide the entire source code of a software project as the distribution unit that an end-user can then download, build, and install on their system.
+    Source distributions may be in the form of a version control system (e.g. Git) repository or a software archive (e.g. tarball or zip file).
+    While source optimized package management tools like Spack~\cite{Spack_2015} define their own build recipe system but are build instruction sets for source distributions.
+    Source distributions are the most common form of software packaging in the HEP ecosystem given they do not require an external system from the source code.
+    \item \textbf{Operating system packages} provide archives of pre-built binaries of software projects that are meant to be globally installed on a user's system through an operating system's package manager.
+    Operating system packages (e.g. \texttt{.rpm} for Red Hat Enterprise Linux (RHEL)-based Linux distributions, \texttt{.deb} for Debian-based Linux distributions) assume the existence of libraries and tools that are provided by the operating system and treat the entire operating system as a unified software environment.
+    \item \textbf{Nix packages} provide a functional approach to software packaging that emphasizes reproducibility of builds from source distributions and composition.
+    Use of Nix is rare in the HEP ecosystem as of 2026.
+    \item \textbf{Python packages} provide both source distributions (sdists) and binary distributions (wheels) for Python software projects.
+    Python packages are specifically designed for libraries in the the Python programming language, though wheels may contain compiled extensions in
+    other languages such as C, C++, or Rust.
+    Python wheels with compiled extensions must have variations of the package built for each target computing platform (operating system and computing architecture), Python version, and Python ABI, which leads to assumptions on the versions of compilers used for each platform~\cite{pypackaging-native}.
+    \item \textbf{Conda packages} provide binary distributions of software projects that are computing platform specific but make no assumptions of underlying system libraries or tools down to low-level C library requirements (e.g. \texttt{glibc}).
+\end{itemize}
