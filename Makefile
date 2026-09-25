@@ -75,7 +75,7 @@ arXiv: deep_clean text
 	if [ -d latex ]; then cp -r latex submit_to_arXiv; fi
 	if [ -d figures ]; then cp -r figures submit_to_arXiv; fi
 	if [ -f *.sty ]; then cp *.sty submit_to_arXiv; fi
-	# .bst files are not used, but copy over to inlcude all src files for posterity
+	# .bst files are not used, but copy over to include all src files for posterity
 	if [ -f *.bst ]; then cp *.bst submit_to_arXiv; fi
 	# https://arxiv.org/help/00README
 	if [ -f 00README.XXX ]; then cp 00README.XXX submit_to_arXiv; fi
@@ -89,7 +89,7 @@ arXiv: deep_clean text
 
 	mv submit_to_arXiv/$(FILENAME).tex submit_to_arXiv/ms.tex
 
-	# -i.bak is used for compatability across GNU and BSD/macOS sed
+	# -i.bak is used for compatibility across GNU and BSD/macOS sed
 	# Change the FILENAME to ms while ignoring commented lines
 	sed -i.bak '/^ *#/d;s/#.*//;0,/FILENAME/s/.*/FILENAME = ms/' submit_to_arXiv/Makefile
 
