@@ -1,0 +1,30 @@
+ci:
+  autoupdate_commit_msg: "chore: update pre-commit hooks"
+  autoupdate_schedule: quarterly
+  autofix_commit_msg: "style: pre-commit fixes"
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-yaml
+      - id: debug-statements
+      - id: end-of-file-fixer
+        # webofc.cls and woc.bst are vendored from EDP Sciences; leave them untouched
+        exclude: ^(latex/webofc\.cls|woc\.bst|doiEDPS\.sty)$
+      - id: mixed-line-ending
+      - id: requirements-txt-fixer
+      - id: trailing-whitespace
+        exclude: ^(latex/webofc\.cls|woc\.bst|doiEDPS\.sty)$
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.3
+    hooks:
+      - id: codespell
+        # ist, acn: glossary file extensions in the Makefile; te: the Te\kern in the \TeV macro
+        args: ["--ignore-words-list", "ist,acn,te"]
+        exclude: ^(pixi\.lock|latex/webofc\.cls|woc\.bst|doiEDPS\.sty)$
