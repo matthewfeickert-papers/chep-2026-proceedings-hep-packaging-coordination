@@ -1,3 +1,6 @@
-\section{Future Work and Decisions}\label{sec:conclusions}
+\section{Future Work and Outlook}\label{sec:conclusions}
 
-Conclusions.
+While the conda-forge distribution model is robust, HEP Packaging Coordination also wants to be able to leverage the well-tested strengths of the HEP software community's existing distribution methods, namely CernVM-FS.
+While LHCb has successfully integrated locked and reproducible conda software environment distribution through CVMFS with LbCondaWrappers~\cite{lbcondawrappers}, this technology is not scoped to be widely applicable across the broader HEP software community and different experiments.
+Based on recent technologies introduced into the conda software ecosystem through the \texttt{rattler}~\cite{rattler} ecosystem of tools, there has been work to create \texttt{rattler-fs}~\cite{rattler_pr_1182}, a FUSE based filesystem that transparently proxies data in the package cache on demand.
+This would allow for bespoke conda-based software environment to be created on top of existing CVMFS distributed layers without duplication of data and without end-user restrictions.
