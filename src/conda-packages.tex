@@ -31,6 +31,9 @@ Allowing for multiple package builds to exist simultaneously on a conda package 
 \section{Conda-forge}\label{sec:conda-forge}
 Building on the standards of the conda packaging format, conda-forge~\cite{conda_forge} is open source community cyberinfrastructure that acts both as a ``forge'' for conda packages by providing global build infrastructure and automation systems driven through continuous integration actions on independent software project ``feedstock'' GitHub repositories under the conda-forge GitHub organization (\href{https://github.com/conda-forge/}{https://github.com/conda-forge/}).
 The conda-forge community project also includes the \texttt{conda-forge} conda channel, which hosts all of the build package artifacts from the conda-forge build cyberinfrastructure.
+Conda-forge also provides ``global pinning'' infrastructure to automatically migrate ABI changes across the entire ecosystem through long-running automated dev ops workflows.
+This ensures that all packages on conda-forge are built coherently together and supports building and using all packages built on conda-forge together while minimizing the potential for conflicts.
+
 As of September 2026, conda-forge builds and distributes over 34,000 conda packages which have resulted in over 48 billion package downloads (with over 1.5 billion monthly package downloads)~\cite{conda_forge-website}.
 Despite the growing number of packages, as of September 2026, the public \texttt{repodata.json} files on conda-forge report a total size of all packages on conda-forge of around 25.2 TB.\footnote{The storage for the entirety of conda-forge and its bandwidth use is provided as an in-kind donation by Anaconda, Inc.}
 The relatively small disk size is due to multiple design decisions in Conda-Forge Enhancement Proposals (CFEPs)~\cite{CFEPs} but most impactful is the prioritization of dynamic linking of shared libraries in conda-forge conda packages over statically linked libraries.
