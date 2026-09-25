@@ -5,7 +5,7 @@ While the HEP ecosystem has achieved great success with this heterogeneous appro
 Through efforts of the HEP Packaging Coordination community project~\cite{matthew_feickert_chep_2026} --- that build upon previous HEP community efforts~\cite{Burr:2699537} --- a robust and flexible system for packaging and distributing HEP software as conda packages~\cite{conda_software} through the conda-forge package index~\cite{conda_forge} has been established.
 Use of this packaging technology and software distribution are being further explored to improve the accessibility, portability, and reproducibility of the HEP software ecosystem.
 
-For clarity in this writing, ``\emph{packaging}'' is defined as the process of defining, collating, and potentially building software projects into distributable units that an end-user can practically request, install, and use.
+For clarity in this writing, ``\emph{packaging}'' is defined as the process of defining, collating, and potentially building software projects into distributable units of software artifacts that an end-user can practically request, install, and use.
 ``\emph{Software distribution}'' is defined as the means by which packaged software is made available to end-users.
 A ``\emph{software environments}'' is defined as the collection of (potentially packaged and unpackaged) software that are installed and/or made available to a user through directory trees and shell environment variables being manipulated to exist on the user's system shell paths.
 Software environments are assumed to be different from the default state of a user's system, but are not required to be (e.g. in the case of a custom operating system distribution).
@@ -27,3 +27,6 @@ Examples of these terms that emphasize the heterogeneous nature of the ecosystem
     Python wheels with compiled extensions must have variations of the package built for each target computing platform (operating system and computing architecture), Python version, and Python ABI, which leads to assumptions on the versions of compilers used for each platform~\cite{pypackaging-native}.
     \item \textbf{Conda packages} provide binary distributions of software projects that are computing platform specific but make no assumptions of underlying system libraries or tools down to low-level C library requirements (e.g. \texttt{glibc}).
 \end{itemize}
+
+These different packaging technology choices all generate package artifacts that can the be distributed in different manners.
+Many packaging technologies provide community recognized package indexes and tools that facilitate distribution to end-users, though curation and distribution of software environments through Linux container images (e.g. Apptainer, Docker) or the read-only file system CernVM-FS\footnote{CernVM-FS is perhaps the most widely used and well known software distribution mechanism in the HEP ecosystem.}~\cite{Blomer:2011zz}.

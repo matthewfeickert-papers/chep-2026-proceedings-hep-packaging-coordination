@@ -26,5 +26,5 @@ repos:
     hooks:
       - id: codespell
         # ist, acn: glossary file extensions in the Makefile; te: the Te\kern in the \TeV macro
-        args: ["--ignore-words-list", "ist,acn,te"]
+        args: ["--ignore-words-list", "ist,acn,te,ser"]
         exclude: ^(pixi\.lock|latex/webofc\.cls|woc\.bst|doiEDPS\.sty)$
