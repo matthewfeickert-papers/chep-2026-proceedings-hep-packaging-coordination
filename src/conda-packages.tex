@@ -2,8 +2,28 @@
 
 The conda packaging format~\cite{conda_software} is general yet powerful.
 A conda package is fundamentally a \texttt{zip} compressed archive (\texttt{.conda}) containing two Zstandard compressed \texttt{tar} archives (\texttt{.tar.zst}).
-One archive contains relocatable files, platform-specific binaries, and, potentially,symlinks (for Unix-based platforms).
+One archive contains relocatable files, platform-specific binaries, and, potentially for Unix-based platforms, symlinks.
 The other archive contains metadata that comprehensively describes the package contents, provenance, requirements, and dependencies.
 As the conda package format is language agnostic it can be used to effectively package any software as a conda package.
-This has allowed for wide support of libraries and tools from Fortran (e.g. \href{https://github.com/conda-forge/lapack-feedstock}{LAPACK}), C++ (e.g. \href{https://github.com/conda-forge/boost-feedstock}{BOOST}), CUDA (e.g. \href{https://github.com/conda-forge/cudnn-feedstock}{cuDNN}), Python (e.g. \href{https://github.com/conda-forge/scipy-feedstock}{SciPy}), and other languages used across science.
+This has allowed for wide support of libraries and tools from Fortran (e.g. \href{https://github.com/conda-forge/lapack-feedstock}{LAPACK}), C++ (e.g. \href{https://github.com/conda-forge/boost-feedstock}{BOOST}), CUDA (e.g. \href{https://github.com/conda-forge/cudnn-feedstock}{cuDNN}), Python (e.g. \href{https://github.com/conda-forge/scipy-feedstock}{SciPy}), and other languages used across science such as Rust and Go.
 It also allows for software projects that expose interfaces in multiple languages to be packaged in their entirety as a single conda package (e.g. \href{https://github.com/conda-forge/root-feedstock}{ROOT}).
+
+The conda packaging format has benefitted from robust standards that are achieved through iterative improvements and hardening through the Conda Enhancement Proposals (CEP) process~\cite{CEPs}.
+This has allowed for packaging of a complex software ecosystem to continue without invalidating or breaking existing conda packages.
+For example, the conda package format requires that all build tools, linked libraries, and runtime dependencies specified in the package recipe --- that define how a conda package is built, packaged, and tested --- also exist as conda packages.
+This bootstrapping system ensures that all dependencies of a package exist in a coherent format that are free of operating system level assumptions down to the low-level C library requirements --- which can not be installed as conda packages themselves.
+CEP 30~\cite{CEP30} defines ``virtual packages'' that represent these system-level dependencies, allowing conda packages to declare dependencies on these virtual packages without assuming their installation method.
+Similar enhancements have allowed virtual packages for specific hardware features, such as CEP 46~\cite{CEP46} which defines the \texttt{\_\_cuda\_arch} virtual package for CUDA architectures, which allows for robust definition of hardware acceleration dependencies.
+Combined with the work by the NVIDIA open source team to provide the full CUDA stack of tools, from the CUDA compiler \texttt{nvcc} to the high-level development libraries, these standards have allowed for conda packages to be a robust and portable technology for CUDA-enabled software packaging and distribution.
+
+The conda packaging format also allows for the creation of multi-platform packages.
+A conda recipe can be built for all defined computing platforms that the underlying software supports without having to duplicate the recipe.
+This allows for building conda packages across all computing platform combinations of operating systems and hardware architectures, such as Linux, macOS, and Windows on x86\_64, ARM, and PowerPC architectures (e.g. \texttt{linux-64}, \texttt{osx-arm64}, \texttt{win-arm64}).
+Most importantly for the HEP software community, having x86\_64- and AArch64-based multi-platform builds for Linux allows for ensuring robust support and distribution across all computing systems that are available and prioritized in the community, such as for the upcoming HL-LHC era~\cite{CERN-LHCC-2022-005}.
+Additionally, the conda packaging format already supports RISC-V architectures (e.g. \texttt{linux-riscv64}), which may be of interest to the HEP community in future experiments.
+Beyond computing platforms, the conda packaging format also supports ``build variants'' that allow for creating multiple builds of the same package version with different configuration options, such as ``microarch'' level instructions for enabling Single Instruction, Multiple Data (SIMD) instruction sets and Message Passing Interface (MPI) standard specifications like MPICH and OpenMPI.
+Build variants allow for optimizations to be applied throughout entire toolchains that can lead to performance that come close to machine-level bespoke optimizations while retaining the ability to easily change and reproduce software environments.
+
+Finally, the conda packaging format also allows for multiple rebuilds of a particular package version without through including the build number as package metadata (where higher build numbers are preferred by package resolver software).
+This allows for long-term support of older releases of software by rebuilding against newer compatible versions of dependencies while maintaining the same package version and source code.
+Allowing for multiple package builds to exist simultaneously on a conda package index (a ``conda channel'') combined with a lack of operating system specific assumptions and digest-level lockfile tooling~\cite{Feickert:2025qru,fischer2025pixiunifiedsoftwaredevelopment} makes conda package a compelling technology choice for robust long-term support software distribution and preservation.
